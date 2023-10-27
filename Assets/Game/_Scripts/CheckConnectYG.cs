@@ -3,6 +3,7 @@ using YG;
 
 public class CheckConnectYG : MonoBehaviour
 {
+    [SerializeField] private MainMenu menu;
     private void OnEnable() => YandexGame.GetDataEvent += CheckSDK;
     private void OnDisable() => YandexGame.GetDataEvent -= CheckSDK;
 
@@ -25,5 +26,6 @@ public class CheckConnectYG : MonoBehaviour
             Debug.Log("User auth ERROR");
             YandexGame.AuthDialog();
         }
+        menu.Initialize();
     }
 }

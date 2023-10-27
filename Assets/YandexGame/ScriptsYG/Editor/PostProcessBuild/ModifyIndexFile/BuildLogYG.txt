@@ -1,2 +1,2 @@
-Build path: D:/Рабочий стол/DragonPicker
-Build number: 22
+Build path: D:/Рабочий стол/DragonPicker/DragonPicker
+Build number: 33

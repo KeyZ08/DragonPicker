@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -24,8 +25,6 @@ public class DragonPicker : MonoBehaviour
         if (YandexGame.SDKEnabled)
         {
             GetLoadSave();
-            UserName.text = YandexGame.playerName;
-            Debug.Log("PlayerName: " + YandexGame.playerName);
         }
 
         Score = GameObject.FindGameObjectWithTag("Score").GetComponent<TextMeshProUGUI>();
@@ -71,6 +70,9 @@ public class DragonPicker : MonoBehaviour
                 shieldList[shieldList.Count - 1].Collider.enabled = true;
             else
             {
+                LinkedList<string> achivs = new LinkedList<string>(YandexGame.savesData.achievments);
+                achivs.AddFirst("Береги щиты!");
+                YandexGame.savesData.achievments = achivs.ToArray();
                 UserSave();
                 SceneManager.LoadScene(0);
             }
@@ -79,6 +81,8 @@ public class DragonPicker : MonoBehaviour
 
     public void GetLoadSave()
     {
+        UserName.text = YandexGame.playerName;
+        Debug.Log("PlayerName: " + YandexGame.playerName);
         Debug.Log(YandexGame.savesData.bestScore);
     }
 
@@ -88,8 +92,7 @@ public class DragonPicker : MonoBehaviour
         {
             YandexGame.savesData.bestScore = scoreCount;
             YandexGame.NewLeaderboardScores("TOPPlayerScore", scoreCount);
-            YandexGame.SaveProgress();
         }
-        Debug.Log(YandexGame.savesData.bestScore);
+        YandexGame.SaveProgress();
     }
 }

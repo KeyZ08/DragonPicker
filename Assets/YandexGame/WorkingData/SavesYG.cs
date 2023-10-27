@@ -12,7 +12,7 @@ namespace YG
 
         // Ваши сохранения
         public int bestScore;
-
+        public string[] achievments = new string[0];
 
 
 

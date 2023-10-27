@@ -6,12 +6,7 @@ using YG;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI bestScore;
-
-    private void Start()
-    {
-        bestScore.text = $"Best score: {YandexGame.savesData.bestScore}";
-        Debug.Log(YandexGame.savesData.bestScore);
-    }
+    [SerializeField] private TextMeshProUGUI achivments;
 
     public void PlayGame()
     {
@@ -21,5 +16,11 @@ public class MainMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void Initialize()
+    {
+        bestScore.text = $"Best score: {YandexGame.savesData.bestScore}";
+        achivments.text = string.Join(",\n", YandexGame.savesData.achievments ?? new string[0]);
     }
 }
